@@ -19,4 +19,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameState.h">
+      <Filter>Source Files\Resource Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

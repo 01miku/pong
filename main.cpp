@@ -1,6 +1,8 @@
 
 #include "sfwdraw.h"
 #include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
 int paddleSpeed = 4;
 int paddleSpeedUp = 4;
@@ -8,17 +10,11 @@ int paddleSpeedDown = 4;
 
 float ballSpeed = 5;
 
-//
-//struct Score 
-//{
-//	int points;
-//	int leftWallScore;
-//	int ballCollideWall;
-//};
+int playerScore = 00;
 
 
-
-struct Paddle {
+struct Paddle 
+{
 	float xPositionA = 20;
 	float xPositionB = 20;
 	float yPositionA = 0;
@@ -28,7 +24,8 @@ struct Paddle {
 	int speed;
 };
 
-struct Ball {
+struct Ball 
+{
 	float x, y;
 	int height;
 	int width;
@@ -36,7 +33,8 @@ struct Ball {
 	int speedX, speedY;
 };
 
-struct Boundary {
+struct Boundary 
+{
 	int height;
 	int width;
 	int length;
@@ -79,6 +77,26 @@ void drawBoundaryLeft()
 	sfw::drawLine(10, 10, 10, 800, YELLOW);
 }
 
+void drawNet() 
+{
+	sfw::drawLine(400, 20, 400, 60, WHITE);
+	sfw::drawLine(400, 85, 400, 125, WHITE);
+	sfw::drawLine(400, 150, 400, 190, WHITE);
+	sfw::drawLine(400, 215, 400, 255, WHITE);
+	sfw::drawLine(400, 280, 400, 320, WHITE);
+	sfw::drawLine(400, 345, 400, 385, WHITE);
+	sfw::drawLine(400, 410, 400, 450, WHITE);
+	sfw::drawLine(400, 475, 400, 515, WHITE);
+	sfw::drawLine(400, 540, 400, 580, WHITE);
+}
+
+void drawScore( unsigned int font ) {
+	char string[12];
+	sprintf_s(string, "SCORE: %d", playerScore);
+	sfw::drawString(font, string, 320, 600, 20, 20, 0, ' ');
+}
+
+
 void updateBall(Ball &ball) 
 {
 	ball.x += ball.speedX;
@@ -87,10 +105,10 @@ void updateBall(Ball &ball)
 
 	if (ball.x > 800)
 		ball.speedX *= -1;
-
+	
 	if (ball.x < 0)
 		ball.speedX *= -1;
-
+		
 	if (ball.y > 600)
 		ball.speedY *= -1;
 
@@ -120,6 +138,9 @@ void updatePaddle(Paddle &p)
 
 void main()
 {
+	
+	srand(time(0));
+	
 	sfw::initContext(800, 600,"NSFW Draw");
 
 	unsigned f = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
@@ -199,6 +220,10 @@ void main()
 
 		drawBoundaryLeft();
 
+		drawNet();
+
+		drawScore(f);
+
 
 		if (p.yPositionA > 500)
 		{
@@ -225,13 +250,19 @@ void main()
 			ball.speedX *= -1;
 		}
 
-		if (ball.x < 0) // reset ball
+		if (ball.x < 0) // reset ball and subtract score
 		{
 			ball.x = 400;
-			ball.y = 300;
-			//ball.speedX = 0;
-			//ball.speedY = 0;
+			ball.y = rand()%600;
+
 		}
+		
+		if (ball.x > 800) 
+		{
+			playerScore = playerScore + 1;
+		}
+	
+	
 	}
 
 
