@@ -4,23 +4,17 @@
 #include <cstdlib>
 #include <ctime>
 
-
+#include "Paddle.h"
+#include "Ball.h"
 
 class GameState 
 {
 	unsigned font;
+	Ball ball;
+	Paddle p;
 
 public:
 	void init();
 	void update();
 	void draw();
 };
-
-
-GameState createGameState();
-
-void initGameState(GameState & gs);
-
-void updateGameState(GameState &gs);
-
-void drawGameState(const GameState &gs);
