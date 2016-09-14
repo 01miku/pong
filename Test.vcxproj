@@ -125,15 +125,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Depart.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Option.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Splash.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="constdecl.h" />
+    <ClInclude Include="Depart.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Option.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Splash.h" />
   </ItemGroup>

@@ -31,5 +31,5 @@ APP_STATE Splash::next()
 	if (timer < 0 || sfw::getKey('P'))
 		return ENTER_OPTION;
 
-	return APP_STATE();
+	return SPLASH;
 }

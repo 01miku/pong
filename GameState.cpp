@@ -5,6 +5,8 @@ void GameState::init()
 {
 	font = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
 
+	sfw::setBackgroundColor(WHITE);
+
 	ball.x = 400;
 	ball.y = 300;
 	ball.size = 12;
@@ -17,6 +19,7 @@ void GameState::init()
 	p.yPositionB = 100;
 
 	p.score = 0;
+
 }
 
 void GameState::update() 
@@ -29,7 +32,7 @@ void GameState::update()
 	p.update();
 }
 
-void GameState::draw() 
+void GameState::draw()
 {
 	//draw Paddle
 	p.draw();
@@ -43,22 +46,28 @@ void GameState::draw()
 	sfw::drawLine(790, 590, 790, 10, RED);
 	//draw Boundary Left
 	sfw::drawLine(10, 10, 10, 800, YELLOW);
-	
+
 	//draw Net
-	sfw::drawLine(400, 20, 400, 60, WHITE);
-	sfw::drawLine(400, 85, 400, 125, WHITE);
-	sfw::drawLine(400, 150, 400, 190, WHITE);
-	sfw::drawLine(400, 215, 400, 255, WHITE);
-	sfw::drawLine(400, 280, 400, 320, WHITE);
-	sfw::drawLine(400, 345, 400, 385, WHITE);
-	sfw::drawLine(400, 410, 400, 450, WHITE);
-	sfw::drawLine(400, 475, 400, 515, WHITE);
-	sfw::drawLine(400, 540, 400, 580, WHITE);
-	
+	sfw::drawLine(400, 20, 400, 60, BLACK);
+	sfw::drawLine(400, 85, 400, 125, BLACK);
+	sfw::drawLine(400, 150, 400, 190, BLACK);
+	sfw::drawLine(400, 215, 400, 255, BLACK);
+	sfw::drawLine(400, 280, 400, 320, BLACK);
+	sfw::drawLine(400, 345, 400, 385, BLACK);
+	sfw::drawLine(400, 410, 400, 450, BLACK);
+	sfw::drawLine(400, 475, 400, 515, BLACK);
+	sfw::drawLine(400, 540, 400, 580, BLACK);
+
 	//draw Score
 	char string[12];
 	sprintf_s(string, "SCORE: %d", p.score);
 	sfw::drawString(font, string, 320, 600, 20, 20, 0, ' ');
-
-
 }
+	APP_STATE GameState::next() 
+	{
+		if (sfw::getKey(KEY_ESCAPE))
+			return ENTER_OPTION;
+		
+		return ACTION;
+ 
+	}

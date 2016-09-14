@@ -8,6 +8,8 @@ void Ball::update(Paddle &p)
 {
 	x += speedX;
 	y += speedY;
+
+
 	// if the ball hits a boundary, flip the direction.
 
 	if (x > 800)
@@ -22,6 +24,7 @@ void Ball::update(Paddle &p)
 		speedX *= -1;
 		x = 400;
 		y = rand() % 600;
+		p.score = 0;
 	}
 
 	if (y > 600)
@@ -41,5 +44,5 @@ void Ball::update(Paddle &p)
 
 void Ball::draw()
 {
-	sfw::drawCircle(x, y, size, 25, BLUE);
+	sfw::drawCircle(x, y, size, 25, BLACK);
 }

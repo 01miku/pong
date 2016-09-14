@@ -6,6 +6,7 @@
 
 #include "Paddle.h"
 #include "Ball.h"
+#include "constdecl.h"
 
 class GameState 
 {
@@ -17,4 +18,5 @@ public:
 	void init();
 	void update();
 	void draw();
+	APP_STATE next();
 };
