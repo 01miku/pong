@@ -7,12 +7,14 @@
 void Depart::init(int a_font)
 {
 	font = a_font;
+	sfw::setBackgroundColor(CYAN);
 }
 
 void Depart::play()
 {
-	timer = 3.0f;
+	timer = 10.0f;
 }
+
 
 void Depart::draw()
 {

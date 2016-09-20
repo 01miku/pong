@@ -30,6 +30,7 @@ void main()
 	splash.init(font);
 	depart.init(font);
 	option.init(font);
+	game.init();
 	
 	APP_STATE state = ENTER_SPLASH;
 
@@ -42,7 +43,7 @@ void main()
 		{
 			// The Game State
 		case ENTER_ACTION:
-			 game.init();
+			game.play2();
 		case ACTION:
 			game.update();
 			game.draw();

@@ -36,5 +36,11 @@ void Paddle::update()
 
 void Paddle::draw()
 {
-	sfw::drawLine(xPositionA, yPositionA, xPositionA, yPositionB, BLACK);
+	sfw::drawLine(xPositionA, yPositionA, xPositionB, yPositionB, BLACK);
+	sfw::drawLine(xPositionA + 1, yPositionA, xPositionB + 1, yPositionB, CYAN);
+	sfw::drawLine(xPositionA + 2, yPositionA, xPositionB + 2, yPositionB, BLACK);
+	sfw::drawLine(xPositionA + 3, yPositionA, xPositionB + 3, yPositionB, CYAN);
+	sfw::drawLine(xPositionA + 4, yPositionA, xPositionB + 4, yPositionB, BLACK);
+	sfw::drawLine(xPositionA + 5, yPositionA, xPositionB + 5, yPositionB, CYAN);
+	sfw::drawLine(xPositionA + 6, yPositionA, xPositionB + 6, yPositionB, BLACK);
 }

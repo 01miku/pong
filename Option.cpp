@@ -5,6 +5,7 @@
 void Option::init(int a_font)
 {
 	font = a_font;
+	sfw::setBackgroundColor(CYAN);
 }
 
 void Option::play()
@@ -14,10 +15,10 @@ void Option::play()
 
 void Option::draw()
 {
-	sfw::drawString(font, "Press enter on the selection:", 80, 140, 16, 16, 0, 0, BLUE);
+	sfw::drawString(font, "Press enter on the selection:", 80, 140, 16, 16, 0, 0, BLACK);
 
-	sfw::drawString(font, "GOTO (G)AME!", 100, 120, 16, 16, 0, 0, select == 1 ? MAGENTA : WHITE);
-	sfw::drawString(font, "GOTO (D)epart!", 100, 100, 16, 16, 0, 0, select == 0 ? MAGENTA : WHITE);
+	sfw::drawString(font, "GOTO (G)AME!", 100, 120, 16, 16, 0, 0, select == 1 ? BLACK : WHITE);
+	sfw::drawString(font, "GOTO (D)epart!", 100, 100, 16, 16, 0, 0, select == 0 ? BLACK : WHITE);
 
 	sfw::drawLine(100, 80, 100 + 240 * (timer / 1.f), 80);
 }

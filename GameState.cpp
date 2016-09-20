@@ -2,16 +2,25 @@
 #include "GameState.h"
 
 void GameState::init()
-{
+{	
 	font = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
+	pic = sfw::loadTextureMap("./res/redRum.png" , 1, 1);
+	pic2 = sfw::loadTextureMap("./res/white.png", 1, 1);
+}
 
+void GameState::play2() 
+{
 	sfw::setBackgroundColor(WHITE);
 
 	ball.x = 400;
 	ball.y = 300;
 	ball.size = 12;
-	ball.speedX = 5;
-	ball.speedY = 4;
+	ball.speedX = 3;
+	ball.speedY = 3;
+
+	ball.speedXX = 10;
+	ball.speedYY = 8;
+	ball.bricksBroken = 0;
 
 	p.xPositionA = 20;
 	p.xPositionB = 20;
@@ -19,8 +28,15 @@ void GameState::init()
 	p.yPositionB = 100;
 
 	p.score = 0;
+	p.score2 = 0;
+	timer2 = 4.0f;
 
+		for (int i = 0; i < 30; ++i)
+		{
+			bricks[i].init(740 + (i / 10) * 20, (i % 10) * 58 + 4, 50);
+		}
 }
+
 
 void GameState::update() 
 {
@@ -30,6 +46,29 @@ void GameState::update()
 	
 	//update Paddle
 	p.update();
+
+
+	for (int i = 0; i < 30; ++i)
+		bricks[i].update(ball, p);
+	
+
+
+	if (p.score % 10 == 0 && p.score != 0)
+	{
+		//sfw::setBackgroundColor(BLACK);
+		sfw::drawTexture(pic, 400, 300, 800, 600);
+	}
+
+	timer2 --;
+
+	if (timer2 <= 0) 
+	{
+		//sfw::setBackgroundColor(WHITE);
+		sfw::drawTexture(pic2, 400, 300, 800, 600);
+		timer2 = 4.0f;
+	}
+
+
 }
 
 void GameState::draw()
@@ -39,13 +78,26 @@ void GameState::draw()
 	//draw Ball
 	ball.draw();
 	//draw Boundary Bottom
-	sfw::drawLine(10, 10, 800, 10, RED);
+	sfw::drawLine(10, 10, 800, 10, CYAN);
 	//draw Boundary Top
-	sfw::drawLine(800, 590, 0, 590, RED);
+	sfw::drawLine(800, 590, 0, 590, CYAN);
 	//draw Boundary Right
-	sfw::drawLine(790, 590, 790, 10, RED);
+	sfw::drawLine(790, 590, 790, 10, CYAN);
+	
+	for (int i = 0; i < 30; ++i)
+	{
+		bricks[i].draw();
+//		sfw::drawLine(780, array[i], 780, (array[i] - 58), RED);
+	}
+
+	
+
+
+
+
+
 	//draw Boundary Left
-	sfw::drawLine(10, 10, 10, 800, YELLOW);
+	sfw::drawLine(10, 10, 10, 800, BLACK);
 
 	//draw Net
 	sfw::drawLine(400, 20, 400, 60, BLACK);

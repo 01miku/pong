@@ -10,6 +10,8 @@ public:
 	int width;
 	int size;
 	int speedX, speedY;
+	int speedXX, speedYY;
+	int bricksBroken;
 
 	void update(Paddle &p);
 	void draw();
