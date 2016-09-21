@@ -1,11 +1,15 @@
 #include <iostream>
 #include "GameState.h"
 
+
 void GameState::init()
 {	
 	font = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
 	pic = sfw::loadTextureMap("./res/redRum.png" , 1, 1);
 	pic2 = sfw::loadTextureMap("./res/white.png", 1, 1);
+	web.pic6 = sfw::loadTextureMap("./res/spider.png", 1, 1);
+	
+	
 }
 
 void GameState::play2() 
@@ -15,26 +19,33 @@ void GameState::play2()
 	ball.x = 400;
 	ball.y = 300;
 	ball.size = 12;
-	ball.speedX = 3;
+	ball.speedX = 5;
 	ball.speedY = 3;
+	ball.speedXX = 5;
+	ball.speedYY = 3;
 
-	ball.speedXX = 10;
-	ball.speedYY = 8;
-	ball.bricksBroken = 0;
+	//ball.bricksBroken = 0;
 
 	p.xPositionA = 20;
 	p.xPositionB = 20;
 	p.yPositionA = 0;
 	p.yPositionB = 100;
 
+	//web.xPositionAA = 400;
+	//web.xPositionBB = 200;
+	//web.yPositionAA = 300;
+	//web.yPositionBB = 0;
+
+
+
 	p.score = 0;
 	p.score2 = 0;
 	timer2 = 4.0f;
 
-		for (int i = 0; i < 30; ++i)
+		/*for (int i = 0; i < 30; ++i)
 		{
 			bricks[i].init(740 + (i / 10) * 20, (i % 10) * 58 + 4, 50);
-		}
+		}*/
 }
 
 
@@ -42,14 +53,19 @@ void GameState::update()
 {
 	
 	// update Ball
-	ball.update(p);
+	ball.update(p, web);
 	
 	//update Paddle
 	p.update();
 
+	//update Web
+	web.update();
 
-	for (int i = 0; i < 30; ++i)
-		bricks[i].update(ball, p);
+
+
+
+	/*for (int i = 0; i < 30; ++i)
+		bricks[i].update(ball, p);*/
 	
 
 
@@ -77,27 +93,25 @@ void GameState::draw()
 	p.draw();
 	//draw Ball
 	ball.draw();
-	//draw Boundary Bottom
-	sfw::drawLine(10, 10, 800, 10, CYAN);
-	//draw Boundary Top
-	sfw::drawLine(800, 590, 0, 590, CYAN);
-	//draw Boundary Right
-	sfw::drawLine(790, 590, 790, 10, CYAN);
+	//draw Web
+	web.draw();
 	
-	for (int i = 0; i < 30; ++i)
+	
+	//draw Boundary Bottom
+	sfw::drawLine(10, 10, 790, 10, BLACK);
+	//draw Boundary Top
+	sfw::drawLine(790, 590, 10, 590, BLACK);
+	//draw Boundary Right
+	sfw::drawLine(790, 590, 790, 10, RED);
+	
+	/*for (int i = 0; i < 30; ++i)
 	{
 		bricks[i].draw();
-//		sfw::drawLine(780, array[i], 780, (array[i] - 58), RED);
-	}
-
-	
-
-
-
-
+		sfw::drawLine(780, array[i], 780, (array[i] - 58), RED);
+	}*/
 
 	//draw Boundary Left
-	sfw::drawLine(10, 10, 10, 800, BLACK);
+	sfw::drawLine(10, 10, 10, 590, BLACK);
 
 	//draw Net
 	sfw::drawLine(400, 20, 400, 60, BLACK);

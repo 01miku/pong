@@ -8,6 +8,9 @@ class Option
 	float timer;
 	int select;
 
+	unsigned pic3;
+	unsigned pic4;
+
 public:
 	void init(int a_font);
 

@@ -9,8 +9,8 @@ public:
 	float yPositionB = 100;
 
 	int paddleSpeed = 5;
-	int paddleSpeedUp = 5;
-	int paddleSpeedDown = 5;
+	int paddleSpeedUp = paddleSpeed;
+	int paddleSpeedDown = paddleSpeed;
 
 	int width;
 	int length;

@@ -8,16 +8,20 @@
 #include "Ball.h"
 #include "constdecl.h"
 #include "Brick.h"
+#include "web.h"
 
 class GameState 
 {
 	unsigned font;
 	Ball ball;
 	Paddle p;
+	Web web;
 	float timer2;
 	unsigned pic;
 	unsigned pic2;
-	Brick bricks[30];
+	unsigned pic5;
+
+	//Brick bricks[30];
 
 public:
 	void init();

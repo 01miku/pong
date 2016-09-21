@@ -1,25 +1,29 @@
 #include "Ball.h"
-
+#include "GameState.h"
 #include "sfwdraw.h"
 #include "Paddle.h"
 #include <random>
+#include "web.h"
+#include <cmath>
 
-void Ball::update(Paddle &p)
+
+void Ball::update(Paddle &p, Web &web)
 {
 	x += speedX;
 	y += speedY;
+
 
 
 	// if the ball hits a boundary, flip the direction.
 
 	if (x > 790 - size)
 	{
-		if (p.score2 >= 3 && speedX <= 20)
+		if (p.score2 >= 5 && speedX <= 25)
 		{
 			p.score2 = 0;
-			speedX += 1;
+			speedX += 2;
 			if (speedY > 0)
-				speedY += 1;
+				speedY += 2;
 			else
 				speedY -= 1;
 		}
@@ -36,7 +40,7 @@ void Ball::update(Paddle &p)
 		x = 400;
 		y = rand() % 600;
 		p.score = 0;
-		speedX = 3;
+		speedX = 5;
 		speedY = 3;
 		
 	}
@@ -60,6 +64,26 @@ void Ball::update(Paddle &p)
 	}
 
 
+
+	if ((pow((x - web.xPositionAA), 2) + (pow((y - web.yPositionAA), 2)) <= 3844))
+	{
+		if (lock == 0)
+		{
+			speedXX = speedX;
+			speedYY = speedY;
+			lock = 1;
+		}
+
+		speedX = speedXX * 0.1f;
+		speedY = speedYY * 0.1f;
+	}
+
+	if ((pow((x - web.xPositionAA), 2) + (pow((y - web.yPositionAA), 2)) > 3844) && lock == 1)
+	{
+		lock = 0;
+		speedX = speedXX;
+		speedY = speedYY;
+	} 
 }
 
 void Ball::draw()
